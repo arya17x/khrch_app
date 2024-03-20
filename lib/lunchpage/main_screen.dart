@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khrch_app/homeScreen/about_Section.dart';
+
 import 'package:line_icons/line_icons.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -30,14 +32,7 @@ class _MainScreen extends State<MainScreen> {
       'Likes',
       style: optionStyle,
     ),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    AboutSection(),
   ];
 
   @override
@@ -48,9 +43,7 @@ class _MainScreen extends State<MainScreen> {
           body: TweenAnimationBuilder(
             tween: Tween(begin: 0.0, end: 1.0),
             duration: const Duration(milliseconds: 800),
-            child: (_selectedIndex == 0)
-                ? const HomePage()
-                : const Text("Already"),
+            child: _widgetOptions[_selectedIndex],
             builder: (context, value, child) {
               return ShaderMask(
                   shaderCallback: (rect) {
@@ -140,7 +133,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String result = '';
+  String result = "-1";
   String qrFind = '';
 
   void signOut() async {
@@ -150,7 +143,16 @@ class _HomePageState extends State<HomePage> {
             (route) => false));
   }
 
+  Future<DocumentSnapshot> getUserInfo() async {
+    return await FirebaseFirestore.instance
+        .collection('BarCode')
+        .doc('AryaId')
+        .get();
+  }
+
   qrCode() async {
+    const AboutSection();
+
     var res = await Navigator.push(
         context,
         MaterialPageRoute(
@@ -164,11 +166,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
   // Future docID() async {
-  //   DocumentSnapshot<Map<String,dynamic>>docId=await FirebaseFirestore.instance.collection('barCOde').doc('qr').get();
-    
-        
+  //   DocumentSnapshot<Map<String, dynamic>> docId =
+  //       await FirebaseFirestore.instance.collection('BarCode').doc('qr').get();
+  //   qrFind=docId.reference;
   // }
 
   @override
@@ -330,6 +331,7 @@ class _HomePageState extends State<HomePage> {
                     shadowColor: Colors.grey,
                     elevation: 15,
                     color: Color(0xFFE0F0E3),
+                    child: AboutSection()
                   ),
                 ),
               ),
