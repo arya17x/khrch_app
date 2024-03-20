@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "421447636804",
+    "project_id": "aryasm-bd5a4",
+    "storage_bucket": "aryasm-bd5a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421447636804:android:5669acb967db620924a911",
+        "android_client_info": {
+          "package_name": "com.example.khrch_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIbkFehC9PRdK2uD6gSeTxEfqHDTRUnBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
